@@ -19,3 +19,5 @@ El proyecto consiste en un E-COMMERCE de indumentaria.
 [Link del repo dev](https://github.com/giancarlo97/indumentaria_ecommerce)
 
 ![imagen](./src/assets/react.jpg)
+
+![imagen](./src/assets/video1.mkv)
