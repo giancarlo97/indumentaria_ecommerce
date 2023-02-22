@@ -1,7 +1,42 @@
 [
-    { "id": 1, "nombre": "Producto A", "price": 200 , "stock":10 , "category":"remeras" },
-    { "id" :2, "nombre": "Producto B", "price": 200 , "stock":20 , "category":"remerasMujer" },
-    { "id" :3, "nombre": "Producto C", "price": 200 , "stock":30 , "category":"pantalon" },
-    { "id" :4, "nombre": "Producto D", "price": 200 , "stock":40 , "category":"zapatillas" },
-    { "id" :5, "nombre": "Producto E", "price": 200 , "stock":100 , "category":"sombrero" }
+    { 
+        "id": 1, 
+        "name": "Producto A", 
+        "price": 200 , 
+        "description": "lorem",
+        "stock":10 , 
+        "category":"remeras" 
+    },
+    { 
+        "id" :2, 
+        "name": "Producto B", 
+        "price": 200 ,
+        "description": "lorem", 
+        "stock":20 , 
+        "category":"remerasMujer" 
+    },
+    { 
+        "id" :3, 
+        "name": "Producto C", 
+        "price": 200 ,
+        "description": "lorem", 
+        "stock":30 , 
+        "category":"pantalon" 
+    },
+    { 
+        "id" :4, 
+        "name": "Producto D", 
+        "price": 200 ,
+        "description": "lorem", 
+        "stock":40 , 
+        "category":"zapatillas" 
+    },
+    { 
+        "id" :5, 
+        "name": "Producto E", 
+        "price": 200 ,
+        "description": "lorem", 
+        "stock":100 , 
+        "category":"sombrero" 
+    }
 ]
