@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ItemDetail from "./ItemDetail"
 import { useParams } from 'react-router-dom';
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../../firebase/firebase";
 
 const ItemDetailContainer = ({ greeting }) => {
   const [product, setProduct] = useState([]);
@@ -12,7 +14,21 @@ const ItemDetailContainer = ({ greeting }) => {
   const URL_PROD = `${URL_BASE}/${id}`
 
   useEffect(() => {
-    const getProducts = async () => {
+    const productCollection = collection(db, "productos");
+    const refDoc = doc(productCollection, id);
+
+    getDoc(refDoc)
+      .then((result) => {
+        setProduct({
+          id: result.id,
+          ...result.data(),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(setLoading(false));
+    /*const getProducts = async () => {
       try {
         const res = await fetch(URL_PROD);
         const data = await res.json();
@@ -23,7 +39,7 @@ const ItemDetailContainer = ({ greeting }) => {
         setLoading(false);
       }
     };
-    getProducts();
+    getProducts();*/
   }, [id]);
 
   return (

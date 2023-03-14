@@ -16,14 +16,14 @@ import { Link } from "react-router-dom";
 const Item = ({ product }) => {
   return (
     <>
-        <Card sx={{ maxWidth: 345 }} style={styles.container}>
+        <Card sx={{ maxWidth: 350 }} style={styles.container}>
             <CardBody>
                 <Image
                 src={product.image}
                 alt={product.title}
                 borderRadius='lg'
                 />
-                <Stack mt='6' spacing='3'>
+                <Stack mt='6' spacing='1'>
                     <Heading size='md'>{product.title}</Heading>
                     <Text color='blue.600' fontSize='2xl'>
                         ${product.price}
@@ -52,7 +52,7 @@ const styles = {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      margin: 20,
+      margin: 5,
       backgroundColor: "rgba(249, 220, 92, 0.3)",
     },
     title: {
