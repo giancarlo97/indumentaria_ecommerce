@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
-import { useContext } from "react";
+import React, { useState, useContext} from 'react'
 import { CartContext } from "../context/CartContext"
 import { Link } from "react-router-dom"
 import { collection, addDoc, serverTimestamp, doc, updateDoc, getFirestore } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import Table from './Table';
+import Checkout from './Checkout';
 
 const Cart = () => {
   const {cart, setCart} =useContext(CartContext);
@@ -48,10 +48,9 @@ const Cart = () => {
       {cart.length ===0 ? (
         <>
           <h1>
-            No agregaste productos a tu carrito.
+            No agregaste productos.
             <Link to="/">COMPRAR</Link>
           </h1>
-          <h2>Gracias por tu visita</h2>
         </>
       ) :(
         <>
@@ -60,6 +59,7 @@ const Cart = () => {
           })}
         </>
       )}
+        
       <button onClick={finalizarCompra}>Finalizar Compra</button>
       <button onClick={actualizarStock}>Actualizar Stock</button>
       <form onSubmit={handleSubmit}>
@@ -68,6 +68,7 @@ const Cart = () => {
         <button type="submit">Enviar</button>
       </form>
       <p>Numero de Orden: {orderId}</p>
+      
     </>
   )
 };

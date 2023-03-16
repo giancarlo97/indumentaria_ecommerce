@@ -26,7 +26,7 @@ const Item = ({ product }) => {
                 <Stack mt='6' spacing='1'>
                     <Heading size='md'>{product.title}</Heading>
                     <Text color='blue.600' fontSize='2xl'>
-                        ${product.price}
+                        U$D{product.price}
                     </Text>
                 </Stack>
             </CardBody>

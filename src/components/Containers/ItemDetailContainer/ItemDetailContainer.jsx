@@ -9,10 +9,7 @@ const ItemDetailContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
-
-  const URL_BASE = "https://fakestoreapi.com/products";
-  const URL_PROD = `${URL_BASE}/${id}`
-
+  
   useEffect(() => {
     const productCollection = collection(db, "productos");
     const refDoc = doc(productCollection, id);
@@ -28,18 +25,6 @@ const ItemDetailContainer = ({ greeting }) => {
         console.log(error);
       })
       .finally(setLoading(false));
-    /*const getProducts = async () => {
-      try {
-        const res = await fetch(URL_PROD);
-        const data = await res.json();
-        setProduct(data);
-      } catch {
-        console.log("error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProducts();*/
   }, [id]);
 
   return (

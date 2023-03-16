@@ -10,9 +10,6 @@ const ItemListContainer = () => {
 
   const { id } = useParams();
 
-  const URL_BASE = "https://fakestoreapi.com/products";
-  const URL_CAT = `${URL_BASE}/category/${id}`
-
   const productCollection = collection(db, 'productos')
   
   const q = id ? query(productCollection, where('category', '==', id)) : productCollection;
@@ -32,15 +29,7 @@ const ItemListContainer = () => {
       console.log(error);
     })
     .finally(setLoading(false));
-
-    /*fetch(id ? URL_CAT : URL_BASE)
-      .then((res) => res.json())
-      .then((json) => setProducts(json))
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(setLoading(false))*/;
-    },[id, , URL_BASE, URL_CAT]);
+    },[id]);
 
   return (
         <>
