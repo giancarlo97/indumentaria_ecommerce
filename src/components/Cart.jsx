@@ -3,8 +3,7 @@ import { CartContext } from "../context/CartContext"
 import { Link } from "react-router-dom"
 import { collection, addDoc, serverTimestamp, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import Table from './Table';
-import Checkout from './Checkout';
+
 
 const Cart = ({product}) => {
   const {cart, setCart } =useContext(CartContext);
@@ -24,7 +23,7 @@ const Cart = ({product}) => {
 
   const ordersCollection = collection(db, "ordenes")
 
-  const finalizarCompra = ({product}) => {
+  const finalizarCompra = () => {
     const ventasCollecition = collection(db,'ventas');
     addDoc(ventasCollecition,{
       
@@ -39,9 +38,13 @@ const Cart = ({product}) => {
     //setCart([...cart, product])
   }
 
-  const actualizarStock = (id,stockNuevo)=>{
+  /*const actualizarStock = (id,stockNuevo)=>{
     const updateStock = doc(db,'productos',id)
     updateDoc(updateStock,{stock:stockNuevo})
+  }*/
+
+  const handleActualizarStock = () => {
+    actualizarStock(product.id, product.stock)
   }
 
   return (
@@ -62,8 +65,8 @@ const Cart = ({product}) => {
         </>
       )}
         
-      <button onClick={() => finalizarCompra({product})}>Finalizar Compra</button>
-      <button onClick={actualizarStock}>Actualizar Stock</button>
+      <button onClick={finalizarCompra}>Finalizar Compra</button>
+      <button onClick={handleActualizarStock}>Actualizar Stock</button>
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={(e) => setNombre(e.target.value)} />
         <input type="text" onChange={(e) => setEmail(e.target.value)}/>
