@@ -5,8 +5,8 @@ import { collection, addDoc, serverTimestamp, doc, updateDoc } from "firebase/fi
 import { db } from "../firebase/firebase";
 
 
-const Cart = ({ product }) => {
-  const {cart, deleteItem, addItem, data, setData } =useContext(CartContext);
+const Cart = () => {
+  const {cart, deleteItem} =useContext(CartContext);
 
   const [ orderId, setOrderId ] = useState(null);
   const [ nombre, setNombre ] = useState("");
@@ -27,32 +27,27 @@ const Cart = ({ product }) => {
   const finalizarCompra = (product) => {
     const ventasCollecition = collection(db,'ventas');
     addDoc(ventasCollecition,{
-      
-      items: [{product:'remera blanca'}],
-      //item: {product:product.title},
-      //total: {Pay:product.price},
+      item: (product),
       date:serverTimestamp()
     })
     .then(respuesta => console.log(respuesta.id))
     console.log(product);
 
     //actualizarStock(cart.id, cart.stock)
-    //setCart([...cart, product])
   }
 
   /*const actualizarStock = (id,stockNuevo)=>{
     const updateStock = doc(db,'productos',id)
     updateDoc(updateStock,{stock:stockNuevo})
-  }*/
-
+  }
+/*
   const handleActualizarStock = () => {
     actualizarStock(product.id, product.stock)
-  }
+  }*/
 
   const total = cart.map((product)=>product.price*product.cantidad)
   setTotalPagar[total]
   const totalCart = total.reduce((total, item) => total + item, 0)
-
 
   return (
     <>    
@@ -67,7 +62,6 @@ const Cart = ({ product }) => {
         <>
           {cart.map((product) => {
             return(
-              <div>
                 <div key={product.id}>
                   <div>
                     <img src={product.image} alt={product.title} />
@@ -83,7 +77,6 @@ const Cart = ({ product }) => {
                   <img src="src/assets/tildeOk.jpg" alt="" onClick={() => finalizarCompra(product.title)} />
                   </Link>
                 </div>
-              </div>
             );            
           })}
           {<>{totalCart > 0 ? <div>
@@ -94,17 +87,16 @@ const Cart = ({ product }) => {
                           </div>:<Link to='/cart'></Link>
           }
           </>}    
-          <button onClick={() => finalizarCompra(product.id)}>Finalizar Compra</button>    
+              
         </>
       )}
-      <button onClick={handleActualizarStock}>Actualizar Stock</button>    
+          
       <form onSubmit={handleSubmit}>
         <input type="text" onChange={(e) => setNombre(e.target.value)} />
         <input type="text" onChange={(e) => setEmail(e.target.value)}/>
         <button type="submit">Enviar</button>
       </form>
       <p>Numero de Orden: {orderId}</p>
-      
     </>
   )
 };

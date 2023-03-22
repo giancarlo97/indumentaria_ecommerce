@@ -20,4 +20,4 @@ El proyecto consiste en un E-COMMERCE de indumentaria.
 
 ![imagen](./src/assets/react.jpg)
 
-![video rutas](./src/assets/video1.gif)
+![video rutas](./src/assets/video.gif)

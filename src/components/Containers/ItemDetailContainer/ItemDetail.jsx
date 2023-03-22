@@ -5,15 +5,7 @@ import { CartContext } from "../../../context/CartContext"
 
 const ItemDetail = ({product}) => {
   const [showItemCount, setShowItemCount] = useState(false);
-  const { cart, addItem, IsInCart} = useContext(CartContext);
-
-  let stock = 100;
-  if(IsInCart(product.id)){
-    const found = cart.find(item => item.id === product.id);
-    stock = product.stock - found.cantidad;
-  }else{
-    stock = product.stock;
-  }
+  const { addItem } = useContext(CartContext);
 
   const onAdd = (contador) => {
     setShowItemCount(true);
@@ -27,7 +19,7 @@ const ItemDetail = ({product}) => {
         <span>{product.description}</span>
         <h2>U$D{product.price}</h2>
         {!showItemCount ? (
-        <ItemCount stock={100} initial={1} onAdd={onAdd} />
+        <ItemCount stock={product.stock} initial={1} onAdd={onAdd} />
       ) : (
         <Link to={'/cart'}>
           <button>Finalizar Compra</button>
